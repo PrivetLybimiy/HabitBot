@@ -1,0 +1,6 @@
+aiogram
+pandas
+sqlalchemy
+python-dotenv
+prometheus-client
+redis
