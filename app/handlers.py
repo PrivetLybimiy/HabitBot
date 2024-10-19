@@ -173,6 +173,7 @@ async def add_habit(message: Message):
             await add_habit_to_user(user_id, habit_name)
             await message.answer(f"Привычка '{habit_name}' успешно добавлена!", reply_markup=main_menu)
             logging.info(f"User {user_id} added habit: {habit_name}.")
+
             user_states[user_id] = 0 
 
     except Exception as e:
