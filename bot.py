@@ -15,17 +15,19 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     encoding='utf-8'
 )
+
+load_dotenv()
+
 async def main():
     await async_main()
 
-    load_dotenv()
     await backup_database()
 
     bot = Bot(token=os.getenv('TG_TOKEN'))
     dispatcher = Dispatcher()
     dispatcher.include_router(router)
 
-    print("Бот запущен и готов к работе.")
+    print("Бот запущенa и готов к работе.")
     logging.info("Bot started and ready to work.")
 
     await dispatcher.start_polling(bot)

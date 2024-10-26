@@ -5,3 +5,8 @@ __pycache__/
 .env
 bot.log
 .gitignore
+app/decode.pyc
+.github/
+app/backups/
+app/data/
+app/database/__pycache__/
