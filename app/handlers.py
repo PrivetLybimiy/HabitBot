@@ -7,7 +7,7 @@ from app.keyboards import create_habits_keyboard, create_user_habits_keyboard, u
     create_user_habits_keyboard_double
 from app.metrics import COMMAND_COUNTER, ERROR_COUNTER
 import asyncio
-from recommendations import get_recommendation
+from app.recommendations import get_recommendation
 
 router = Router()
 states = 0
