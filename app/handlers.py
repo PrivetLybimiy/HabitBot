@@ -29,7 +29,7 @@ async def cmd_start(message: Message):
         COMMAND_COUNTER.labels(command="start").inc()
 
         await message.answer(
-            'Добро пожаловать в "HabitBot", бот для формирования полезных привычек',
+            'Добро пожаловать в "HabitBot", бот для формирования полезных привычек, ',
             reply_markup=main_menu
         )
         logging.debug(f"Sent welcome message to user with id {user_id}.")
@@ -197,8 +197,7 @@ async def add_habit(message: Message):
             )
         elif not existing_habit and habit_name != 'Рекомендации':
             await add_habit_to_user(user_id, habit_name)
-            await message.answer("YA PIDORA$$$$")
-            await message.answer(f"Привычка '{habit_name}' успешно добавлена!111", reply_markup=main_menu)
+            await message.answer(f"Привычка '{habit_name}' успешно добавлена!", reply_markup=main_menu)
             logging.info(f"User {user_id} added habit: {habit_name}.")
 
             user_states[user_id] = 0

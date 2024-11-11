@@ -21,7 +21,7 @@ load_dotenv()
 async def main():
     await async_main()
 
-    await backup_database()
+    # await backup_database()
 
     bot = Bot(token=os.getenv('TG_TOKEN'))
     dispatcher = Dispatcher()
