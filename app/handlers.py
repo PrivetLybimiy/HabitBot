@@ -3,11 +3,15 @@ from aiogram import F, Router
 from aiogram.types import Message
 from aiogram.filters import Command
 from app.database.requests import show_habbits, set_user, user_left, add_habit_to_user, get_user
-from app.keyboards import create_habits_keyboard, create_user_habits_keyboard, user_states, main_menu, watch_habits
+from app.keyboards import create_habits_keyboard, create_user_habits_keyboard, user_states, main_menu, watch_habits, \
+    create_user_habits_keyboard_double
 from app.metrics import COMMAND_COUNTER, ERROR_COUNTER
+import asyncio
+from recommendations import get_recommendation
 
 router = Router()
 states = 0
+
 
 @router.message(Command("start"))
 async def cmd_start(message: Message):
@@ -33,6 +37,7 @@ async def cmd_start(message: Message):
         logging.error(f"Error in /start command for user {user_id}: {str(e)}")
         ERROR_COUNTER.inc()
 
+
 @router.message(Command('help'))
 async def cmd_help(message: Message):
     try:
@@ -48,6 +53,18 @@ async def cmd_help(message: Message):
     except Exception as e:
         logging.error(f"Error in /help command for user {user_id}: {str(e)}")
         ERROR_COUNTER.inc()
+
+
+@router.message(F.text == 'Рекомендации')
+async def recommendations(message: Message):
+    tg_id = message.from_user.id
+    user = await get_user(tg_id)
+    user_id = user.user_id
+    user_habits = await show_habbits(user_id)
+    habits_keyboard = await create_user_habits_keyboard_double(user_habits, user_id)
+    await message.answer("Ваши привычки:", reply_markup=habits_keyboard)
+    # await get_recommendation(purpose)
+
 
 @router.message(F.text == 'Привычки')
 async def catalog(message: Message):
@@ -66,10 +83,12 @@ async def catalog(message: Message):
             await message.answer("Ваши привычки:", reply_markup=habits_keyboard)
             logging.info(f"Displayed habits for user {user_id}.")
         else:
-            await message.answer("У вас нет активных привычек. Вы можете добавить новую привычку:", reply_markup=watch_habits)
+            await message.answer("У вас нет активных привычек. Вы можете добавить новую привычку:",
+                                 reply_markup=watch_habits)
             logging.info(f"User {user_id} doesn't have habits, showed empty habits keyboard.")
     except Exception as e:
         logging.error(f"Error displaying habits for user {user_id}: {str(e)}")
+
 
 @router.message(F.text == '<-')
 async def previous_page(message: Message):
@@ -83,6 +102,7 @@ async def previous_page(message: Message):
         user_states[user_id] = current_page - 1
     await catalog(message)
 
+
 @router.message(F.text == '->')
 async def next_page(message: Message):
     states = 0
@@ -94,6 +114,7 @@ async def next_page(message: Message):
     user_states[user_id] = current_page + 1
     await catalog(message)
 
+
 @router.message(F.text == 'Вернуться')
 async def back_from_habits(message: Message):
     try:
@@ -102,6 +123,7 @@ async def back_from_habits(message: Message):
     except Exception as e:
         logging.error(f"Error processing 'Back' button for user {message.from_user.id}: {str(e)}")
         ERROR_COUNTER.inc()
+
 
 @router.message(F.text == 'Добавить новую привычку')
 async def add_habit_prompt(message: Message):
@@ -119,14 +141,16 @@ async def add_habit_prompt(message: Message):
         logging.error(f"Error displaying available habits: {str(e)}")
         await message.answer("Произошла ошибка при получении привычек.")
 
+
 @router.message(F.text == 'Вперед')
 async def next_page(message: Message):
     states = 1
     user_id = message.from_user.id
-    user_states[user_id] = user_states.get(user_id, 0) + 1 
+    user_states[user_id] = user_states.get(user_id, 0) + 1
     logging.info(f"User {user_id} navigated to page {user_states[user_id]}.")
     habits_keyboard = await create_habits_keyboard(user_id)
     await message.answer("Выберите привычку:", reply_markup=habits_keyboard)
+
 
 @router.message(F.text == 'Назад')
 async def previous_page(message: Message):
@@ -137,6 +161,7 @@ async def previous_page(message: Message):
     habits_keyboard = await create_habits_keyboard(user_id)
     await message.answer("Выберите привычку:", reply_markup=habits_keyboard)
 
+
 @router.message(F.text == 'Выход')
 async def cmd_stop(message: Message):
     try:
@@ -144,7 +169,8 @@ async def cmd_stop(message: Message):
         await user_left(message.from_user.id)
         await message.answer("До свидания!")
     except Exception as e:
-        logging.error(f"Error in /exit command for user {message.from_user.id}: {str(e)}") 
+        logging.error(f"Error in /exit command for user {message.from_user.id}: {str(e)}")
+
 
 @router.message(F.text != 'Отмена')
 async def add_habit(message: Message):
@@ -155,7 +181,7 @@ async def add_habit(message: Message):
 
         habit_name = message.text
         logging.info(f"User {user_id} is trying to add habit: {habit_name}.")
-        
+
         user_habits = await show_habbits(user_id)
 
         existing_habit = next((habit for habit in user_habits if habit.habit_name == habit_name), None)
@@ -169,12 +195,12 @@ async def add_habit(message: Message):
                 f"Привычка: {habit_name}\nОписание: {habit_desc}\nДата добавления: {add_date}",
                 reply_markup=main_menu
             )
-        elif not existing_habit:
+        elif not existing_habit and habit_name != 'Рекомендации':
             await add_habit_to_user(user_id, habit_name)
             await message.answer(f"Привычка '{habit_name}' успешно добавлена!", reply_markup=main_menu)
             logging.info(f"User {user_id} added habit: {habit_name}.")
 
-            user_states[user_id] = 0 
+            user_states[user_id] = 0
 
     except Exception as e:
         logging.error(f"Error adding habit '{habit_name}' for user {user_id}: {str(e)}")

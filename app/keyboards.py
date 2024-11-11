@@ -73,3 +73,25 @@ async def create_user_habits_keyboard(user_habits, user_id):
     habits_keyboard = ReplyKeyboardMarkup(keyboard=buttons, resize_keyboard=True)
 
     return habits_keyboard
+
+async def create_user_habits_keyboard_double(user_habits, user_id):
+    current_page = user_states.get(user_id, 0)
+
+    start_index = current_page * 3
+    end_index = start_index + 3
+    habits_to_show = user_habits[start_index:end_index]
+
+    buttons = [[KeyboardButton(text=habit.habit_name)] for habit in habits_to_show]
+
+    navigation_buttons = []
+    if current_page > 0:
+        navigation_buttons.append(KeyboardButton(text='<-'))
+    if end_index < len(user_habits):
+        navigation_buttons.append(KeyboardButton(text='->'))
+
+    if navigation_buttons:
+        buttons.append(navigation_buttons)
+
+    habits_keyboard = ReplyKeyboardMarkup(keyboard=buttons, resize_keyboard=True)
+
+    return habits_keyboard
