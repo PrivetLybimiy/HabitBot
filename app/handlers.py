@@ -11,6 +11,7 @@ from app.recommendations import get_recommendation
 
 router = Router()
 states = 0
+show_rec = True
 
 
 @router.message(Command("start"))
@@ -29,7 +30,7 @@ async def cmd_start(message: Message):
         COMMAND_COUNTER.labels(command="start").inc()
 
         await message.answer(
-            'Добро пожаловать в "HabitBot", бот для формирования полезных привычек, ',
+            'Добро пожаловать в "HabitBot", бот для формирования полезных привычек.',
             reply_markup=main_menu
         )
         logging.debug(f"Sent welcome message to user with id {user_id}.")
@@ -57,19 +58,21 @@ async def cmd_help(message: Message):
 
 @router.message(F.text == 'Рекомендации')
 async def recommendations(message: Message):
+    show_rec = True
     tg_id = message.from_user.id
     user = await get_user(tg_id)
     user_id = user.user_id
     user_habits = await show_habbits(user_id)
     habits_keyboard = await create_user_habits_keyboard_double(user_habits, user_id)
     await message.answer("Ваши привычки:", reply_markup=habits_keyboard)
-    # await get_recommendation(purpose)
+
 
 
 @router.message(F.text == 'Привычки')
 async def catalog(message: Message):
     try:
         states = 0
+        show_rec = False
         tg_id = message.from_user.id
         user = await get_user(tg_id)
         user_id = user.user_id
@@ -128,6 +131,7 @@ async def back_from_habits(message: Message):
 @router.message(F.text == 'Добавить новую привычку')
 async def add_habit_prompt(message: Message):
     try:
+        show_rec = False
         states = 1
         tg_id = message.from_user.id
         user = await get_user(tg_id)
@@ -188,7 +192,11 @@ async def add_habit(message: Message):
 
         if existing_habit and states == 1:
             await message.answer(f"Привычка '{habit_name}' уже добавлена!", reply_markup=main_menu)
-        elif existing_habit and states == 0:
+        elif existing_habit and states == 0 and show_rec:
+            purpose = existing_habit.habit_name
+            output = await get_recommendation(purpose)
+            await message.answer(f"Рекомедации: {output}.")
+        elif existing_habit and states == 0 and show_rec:
             habit_desc = existing_habit.habit_desc
             add_date = existing_habit.add_date.strftime("%Y-%m-%d")
             await message.answer(
