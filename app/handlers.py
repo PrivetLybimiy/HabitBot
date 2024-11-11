@@ -197,6 +197,7 @@ async def add_habit(message: Message):
             )
         elif not existing_habit and habit_name != 'Рекомендации':
             await add_habit_to_user(user_id, habit_name)
+            await message.answer("YA PIDORA$$$$")
             await message.answer(f"Привычка '{habit_name}' успешно добавлена!111", reply_markup=main_menu)
             logging.info(f"User {user_id} added habit: {habit_name}.")
 

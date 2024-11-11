@@ -68,7 +68,7 @@ services:
       POSTGRES_PASSWORD: "01233210"
       POSTGRES_DB: HabitBot
     ports:
-      - "5433:5433"
+      - "5432:5432"
     networks:
       - habitbot-network
 
