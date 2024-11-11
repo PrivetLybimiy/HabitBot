@@ -1,0 +1,67 @@
+2024-10-26 20:25:30,400 - root - INFO - Bot started and ready to work.
+2024-10-26 20:25:30,400 - aiogram.dispatcher - INFO - Start polling
+2024-10-26 20:25:30,970 - aiogram.dispatcher - INFO - Run polling for bot @BotHabit_bot id=7686521003 - 'HabitBot'
+2024-10-26 20:25:39,377 - root - INFO - User found: 7
+2024-10-26 20:25:39,378 - root - INFO - User 7 - PrivetLybimiy started a session
+2024-10-26 20:25:39,836 - aiogram.event - INFO - Update id=548985776 is handled. Duration 485 ms by bot id=7686521003
+2024-10-26 20:25:52,360 - root - INFO - User found: 7
+2024-10-26 20:25:52,361 - root - INFO - User 7 opened the habits catalog
+2024-10-26 20:25:52,367 - root - INFO - User 7's habits: ['Завтракать', 'Заниматься спортом']
+2024-10-26 20:25:52,595 - root - INFO - Displayed habits for user 7.
+2024-10-26 20:25:52,595 - aiogram.event - INFO - Update id=548985777 is handled. Duration 235 ms by bot id=7686521003
+2024-10-26 20:25:55,221 - root - INFO - User found: 7
+2024-10-26 20:25:55,222 - root - INFO - User 7 is trying to add habit: Завтракать.
+2024-10-26 20:25:55,223 - root - INFO - User 7's habits: ['Завтракать', 'Заниматься спортом']
+2024-10-26 20:25:55,390 - aiogram.event - INFO - Update id=548985778 is handled. Duration 170 ms by bot id=7686521003
+2024-10-26 20:25:57,660 - root - INFO - User found: 7
+2024-10-26 20:25:57,661 - root - INFO - User 7 opened the habits catalog
+2024-10-26 20:25:57,662 - root - INFO - User 7's habits: ['Завтракать', 'Заниматься спортом']
+2024-10-26 20:25:57,856 - root - INFO - Displayed habits for user 7.
+2024-10-26 20:25:57,856 - aiogram.event - INFO - Update id=548985779 is handled. Duration 202 ms by bot id=7686521003
+2024-10-26 20:25:58,913 - root - INFO - User found: 7
+2024-10-26 20:25:58,914 - root - INFO - User 7 is trying to add habit: Заниматься спортом.
+2024-10-26 20:25:58,915 - root - INFO - User 7's habits: ['Завтракать', 'Заниматься спортом']
+2024-10-26 20:25:59,119 - aiogram.event - INFO - Update id=548985780 is handled. Duration 219 ms by bot id=7686521003
+2024-10-26 20:26:00,581 - root - INFO - User found: 7
+2024-10-26 20:26:00,581 - root - INFO - User 7 opened the habits catalog
+2024-10-26 20:26:00,582 - root - INFO - User 7's habits: ['Завтракать', 'Заниматься спортом']
+2024-10-26 20:26:00,749 - root - INFO - Displayed habits for user 7.
+2024-10-26 20:26:00,749 - aiogram.event - INFO - Update id=548985781 is handled. Duration 172 ms by bot id=7686521003
+2024-10-26 20:26:01,764 - root - INFO - User found: 7
+2024-10-26 20:26:01,827 - root - INFO - Available habits: ['Завтракать', 'Заниматься спортом', 'Читать книги', 'Медитировать', 'Пить больше воды', 'Делать зарядку', 'Выходить на прогулку', 'Вести дневник', 'Учить иностранный язык', 'Слушать подкасты']
+2024-10-26 20:26:01,986 - aiogram.event - INFO - Update id=548985782 is handled. Duration 219 ms by bot id=7686521003
+2024-10-26 20:26:03,549 - root - INFO - User 725393845 navigated to page 1.
+2024-10-26 20:26:03,551 - root - INFO - Available habits: ['Завтракать', 'Заниматься спортом', 'Читать книги', 'Медитировать', 'Пить больше воды', 'Делать зарядку', 'Выходить на прогулку', 'Вести дневник', 'Учить иностранный язык', 'Слушать подкасты']
+2024-10-26 20:26:03,722 - aiogram.event - INFO - Update id=548985783 is handled. Duration 172 ms by bot id=7686521003
+2024-10-26 20:26:08,845 - root - INFO - User 725393845 navigated to page 2.
+2024-10-26 20:26:08,847 - root - INFO - Available habits: ['Завтракать', 'Заниматься спортом', 'Читать книги', 'Медитировать', 'Пить больше воды', 'Делать зарядку', 'Выходить на прогулку', 'Вести дневник', 'Учить иностранный язык', 'Слушать подкасты']
+2024-10-26 20:26:08,984 - aiogram.event - INFO - Update id=548985784 is handled. Duration 139 ms by bot id=7686521003
+2024-10-26 20:26:10,648 - root - INFO - User found: 7
+2024-10-26 20:26:10,648 - root - INFO - User 7 is trying to add habit: Вести дневник.
+2024-10-26 20:26:10,650 - root - INFO - User 7's habits: ['Завтракать', 'Заниматься спортом']
+2024-10-26 20:26:10,670 - root - INFO - User 7 added habit Вести дневник.
+2024-10-26 20:26:10,794 - root - INFO - User 7 added habit: Вести дневник.
+2024-10-26 20:26:10,794 - aiogram.event - INFO - Update id=548985785 is handled. Duration 157 ms by bot id=7686521003
+2024-10-26 20:26:12,700 - root - INFO - User found: 7
+2024-10-26 20:26:12,700 - root - INFO - User 7 opened the habits catalog
+2024-10-26 20:26:12,702 - root - INFO - User 7's habits: ['Завтракать', 'Заниматься спортом', 'Вести дневник']
+2024-10-26 20:26:12,818 - root - INFO - Displayed habits for user 7.
+2024-10-26 20:26:12,819 - aiogram.event - INFO - Update id=548985786 is handled. Duration 125 ms by bot id=7686521003
+2024-10-26 20:26:13,899 - root - INFO - User found: 7
+2024-10-26 20:26:13,902 - root - INFO - Available habits: ['Завтракать', 'Заниматься спортом', 'Читать книги', 'Медитировать', 'Пить больше воды', 'Делать зарядку', 'Выходить на прогулку', 'Вести дневник', 'Учить иностранный язык', 'Слушать подкасты']
+2024-10-26 20:26:14,048 - aiogram.event - INFO - Update id=548985787 is handled. Duration 157 ms by bot id=7686521003
+2024-10-26 20:26:15,439 - aiogram.event - INFO - Update id=548985788 is handled. Duration 108 ms by bot id=7686521003
+2024-10-26 20:26:16,661 - root - INFO - User found: 7
+2024-10-26 20:26:16,661 - root - INFO - User 7 opened the habits catalog
+2024-10-26 20:26:16,663 - root - INFO - User 7's habits: ['Завтракать', 'Заниматься спортом', 'Вести дневник']
+2024-10-26 20:26:16,852 - root - INFO - Displayed habits for user 7.
+2024-10-26 20:26:16,852 - aiogram.event - INFO - Update id=548985789 is handled. Duration 202 ms by bot id=7686521003
+2024-10-26 20:26:19,070 - root - INFO - User found: 7
+2024-10-26 20:26:19,071 - root - INFO - User 7 is trying to add habit: Вести дневник.
+2024-10-26 20:26:19,072 - root - INFO - User 7's habits: ['Завтракать', 'Заниматься спортом', 'Вести дневник']
+2024-10-26 20:26:19,283 - aiogram.event - INFO - Update id=548985790 is handled. Duration 219 ms by bot id=7686521003
+2024-10-26 20:26:22,298 - root - INFO - User 725393845 (PrivetLybimiy) ended the session
+2024-10-26 20:26:22,411 - aiogram.event - INFO - Update id=548985791 is handled. Duration 108 ms by bot id=7686521003
+2024-10-26 20:33:45,647 - aiogram.dispatcher - INFO - Polling stopped
+2024-10-26 20:33:45,901 - aiogram.dispatcher - INFO - Polling stopped for bot @BotHabit_bot id=7686521003 - 'HabitBot'
+2024-10-26 20:33:45,902 - root - INFO - Bot stopped

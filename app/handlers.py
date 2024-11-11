@@ -146,7 +146,7 @@ async def cmd_stop(message: Message):
     except Exception as e:
         logging.error(f"Error in /exit command for user {message.from_user.id}: {str(e)}") 
 
-@router.message(F.text != 'Отмена')
+@router.message(F.text != 'Отмена' or F.text != 'Рекомендации')
 async def add_habit(message: Message):
     try:
         tg_id = message.from_user.id
@@ -171,7 +171,7 @@ async def add_habit(message: Message):
             )
         elif not existing_habit:
             await add_habit_to_user(user_id, habit_name)
-            await message.answer(f"Привычка '{habit_name}' успешно добавлена!", reply_markup=main_menu)
+            await message.answer(f"Привычка '{habit_name}' успешно добавлена!111", reply_markup=main_menu)
             logging.info(f"User {user_id} added habit: {habit_name}.")
 
             user_states[user_id] = 0 
